@@ -1,0 +1,1 @@
+The GitHub Actions workflow creates the customer-ready DATAVOX-Windows-Installer.zip and includes the compiled app in its app folder. This template folder is only a placeholder in the source repository.

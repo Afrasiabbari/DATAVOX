@@ -1,0 +1,116 @@
+<Window x:Class="DATAVOX.MainWindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="DATAVOX — Afrasiab Labs" Height="720" Width="1120" MinHeight="620" MinWidth="900"
+ WindowStartupLocation="CenterScreen" Background="#0B1220">
+ <Window.Resources>
+  <Style TargetType="Button" x:Key="NavButton">
+   <Setter Property="Foreground" Value="#AAB8CC"/><Setter Property="Background" Value="Transparent"/>
+   <Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="14,11"/>
+   <Setter Property="HorizontalContentAlignment" Value="Left"/><Setter Property="FontSize" Value="13"/>
+   <Setter Property="Cursor" Value="Hand"/><Setter Property="Margin" Value="0,2"/>
+  </Style>
+  <Style TargetType="Button" x:Key="PrimaryButton">
+   <Setter Property="Background" Value="#2563EB"/><Setter Property="Foreground" Value="White"/>
+   <Setter Property="BorderThickness" Value="0"/><Setter Property="Padding" Value="18,10"/>
+   <Setter Property="FontWeight" Value="SemiBold"/><Setter Property="Cursor" Value="Hand"/>
+  </Style>
+  <Style TargetType="TextBox">
+   <Setter Property="Background" Value="#111C2D"/><Setter Property="Foreground" Value="#E8EEF8"/>
+   <Setter Property="BorderBrush" Value="#2A3A52"/><Setter Property="Padding" Value="11,9"/>
+   <Setter Property="FontSize" Value="12"/>
+  </Style>
+  <Style TargetType="ProgressBar">
+   <Setter Property="Height" Value="7"/><Setter Property="Foreground" Value="#3478F6"/>
+   <Setter Property="Background" Value="#25354C"/>
+  </Style>
+ </Window.Resources>
+ <Grid>
+  <Grid.RowDefinitions><RowDefinition Height="62"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+  <Border Grid.Row="0" Background="#111C2D" BorderBrush="#263750" BorderThickness="0,0,0,1">
+   <DockPanel Margin="22,0">
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+     <Border Width="34" Height="34" CornerRadius="9" Background="#2563EB" Margin="0,0,11,0">
+      <TextBlock Text="D" Foreground="White" FontSize="19" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+     </Border>
+     <StackPanel VerticalAlignment="Center"><TextBlock Text="DATAVOX" Foreground="#F0F5FC" FontSize="16" FontWeight="Bold" />
+      <TextBlock Text="AFRASIAB LABS" Foreground="#8FA1BA" FontSize="9" /></StackPanel>
+    </StackPanel>
+    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
+     <TextBlock Text="LOCAL FILE OPERATIONS" Foreground="#8FA1BA" FontSize="10" VerticalAlignment="Center" Margin="0,0,18,0"/>
+     <Button x:Name="ThemeButton" Content="Light theme" Click="ThemeButton_Click" Padding="10,7" Background="#1B2B43" Foreground="#C9D6E8" BorderBrush="#2A3A52"/>
+    </StackPanel>
+   </DockPanel>
+  </Border>
+  <Grid Grid.Row="1">
+   <Grid.ColumnDefinitions><ColumnDefinition Width="205"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+   <Border Background="#111C2D" BorderBrush="#263750" BorderThickness="0,0,1,0">
+    <DockPanel Margin="12,20">
+     <StackPanel DockPanel.Dock="Top">
+      <TextBlock Text="WORKSPACE" Foreground="#71839D" FontSize="9" FontWeight="Bold" Margin="12,0,0,10"/>
+      <Button Style="{StaticResource NavButton}" Content="⇄   Copy files" Click="CopyNav_Click" Background="#1C3151" Foreground="#70A3FF"/>
+      <Button Style="{StaticResource NavButton}" Content="⚙   Settings" Click="SettingsNav_Click"/>
+     </StackPanel>
+     <Border DockPanel.Dock="Bottom" Background="#172438" BorderBrush="#2A3A52" BorderThickness="1" CornerRadius="8" Padding="12" Margin="0,20,0,0">
+      <StackPanel><TextBlock Text="DATAVOX FOUNDATION" Foreground="#DCE7F6" FontSize="10" FontWeight="Bold"/>
+       <TextBlock Text="Local-first file copying. Your files stay on your computer." TextWrapping="Wrap" Foreground="#8FA1BA" FontSize="10" Margin="0,7,0,0"/></StackPanel>
+     </Border>
+    </DockPanel>
+   </Border>
+   <Grid Grid.Column="1" Margin="30,26">
+    <Grid x:Name="CopyPage">
+     <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+     <StackPanel Grid.Row="0" Margin="0,0,0,22">
+      <TextBlock Text="Copy files" Foreground="#F0F5FC" FontSize="25" FontWeight="SemiBold"/>
+      <TextBlock Text="Choose where your files come from and where they should go." Foreground="#8FA1BA" FontSize="12" Margin="0,6,0,0"/>
+     </StackPanel>
+     <Border Grid.Row="1" Background="#111C2D" BorderBrush="#263750" BorderThickness="1" CornerRadius="10" Padding="18" Margin="0,0,0,12">
+      <StackPanel>
+       <TextBlock Text="SOURCE LOCATION" Foreground="#8FA1BA" FontSize="10" FontWeight="Bold" Margin="0,0,0,9"/>
+       <DockPanel><Button DockPanel.Dock="Right" Content="Browse…" Click="BrowseSource_Click" Padding="14,8" Background="#1B2B43" Foreground="#DCE7F6" BorderBrush="#2A3A52" Margin="10,0,0,0"/>
+        <TextBox x:Name="SourceBox" IsReadOnly="True" Text="Select a file or folder to copy" VerticalContentAlignment="Center"/></DockPanel>
+      </StackPanel>
+     </Border>
+     <Border Grid.Row="2" Background="#111C2D" BorderBrush="#263750" BorderThickness="1" CornerRadius="10" Padding="18" Margin="0,0,0,18">
+      <StackPanel>
+       <TextBlock Text="DESTINATION LOCATION" Foreground="#8FA1BA" FontSize="10" FontWeight="Bold" Margin="0,0,0,9"/>
+       <DockPanel><Button DockPanel.Dock="Right" Content="Browse…" Click="BrowseDestination_Click" Padding="14,8" Background="#1B2B43" Foreground="#DCE7F6" BorderBrush="#2A3A52" Margin="10,0,0,0"/>
+        <TextBox x:Name="DestinationBox" IsReadOnly="True" Text="Select the destination folder" VerticalContentAlignment="Center"/></DockPanel>
+      </StackPanel>
+     </Border>
+     <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,18">
+      <Button x:Name="StartButton" Style="{StaticResource PrimaryButton}" Content="Copy files" Click="StartCopy_Click"/>
+      <Button x:Name="CancelButton" Content="Cancel copy" Click="CancelCopy_Click" IsEnabled="False" Margin="9,0,0,0" Padding="15,9" Background="#1B2B43" Foreground="#DCE7F6" BorderBrush="#2A3A52"/>
+     </StackPanel>
+     <Border Grid.Row="4" Background="#111C2D" BorderBrush="#263750" BorderThickness="1" CornerRadius="10" Padding="18" VerticalAlignment="Top">
+      <StackPanel>
+       <DockPanel><TextBlock Text="COPY PROGRESS" Foreground="#8FA1BA" FontSize="10" FontWeight="Bold"/>
+        <TextBlock x:Name="ProgressPercent" Text="Ready" Foreground="#70A3FF" FontSize="11" DockPanel.Dock="Right"/></DockPanel>
+       <ProgressBar x:Name="CopyProgress" Minimum="0" Maximum="100" Value="0" Margin="0,13,0,10"/>
+       <TextBlock x:Name="StatusText" Text="Select a source and destination to begin." Foreground="#C6D2E3" FontSize="11" TextWrapping="Wrap"/>
+       <TextBlock Text="Copy only: source files are not deleted or moved." Foreground="#8FA1BA" FontSize="10" Margin="0,12,0,0"/>
+      </StackPanel>
+     </Border>
+    </Grid>
+    <Grid x:Name="SettingsPage" Visibility="Collapsed">
+     <StackPanel>
+      <TextBlock Text="Settings" Foreground="#F0F5FC" FontSize="25" FontWeight="SemiBold"/>
+      <TextBlock Text="Application preferences are kept separate from file-copy operations." Foreground="#8FA1BA" FontSize="12" Margin="0,6,0,22"/>
+      <Border Background="#111C2D" BorderBrush="#263750" BorderThickness="1" CornerRadius="10" Padding="18" Margin="0,0,0,12">
+       <StackPanel><TextBlock Text="APPEARANCE" Foreground="#8FA1BA" FontSize="10" FontWeight="Bold" Margin="0,0,0,12"/>
+        <DockPanel><TextBlock Text="Theme" Foreground="#E8EEF8" VerticalAlignment="Center"/><ComboBox x:Name="ThemeChoice" Width="150" SelectedIndex="0" DockPanel.Dock="Right" Background="#1B2B43" Foreground="#17243A"><ComboBoxItem Content="Dark"/><ComboBoxItem Content="Light"/></ComboBox></DockPanel>
+       </StackPanel>
+      </Border>
+      <Border Background="#111C2D" BorderBrush="#263750" BorderThickness="1" CornerRadius="10" Padding="18">
+       <StackPanel><TextBlock Text="FILE COPYING" Foreground="#8FA1BA" FontSize="10" FontWeight="Bold" Margin="0,0,0,12"/>
+        <TextBlock Text="DATAVOX currently copies selected files and folders. It does not delete or move the source." Foreground="#C6D2E3" TextWrapping="Wrap" FontSize="11"/>
+        <TextBlock Text="Existing destination files are skipped in this initial foundation build; conflict controls will be expanded in a later milestone." Foreground="#8FA1BA" TextWrapping="Wrap" FontSize="10" Margin="0,9,0,0"/>
+       </StackPanel>
+      </Border>
+      <Button Content="Save settings" Style="{StaticResource PrimaryButton}" Click="SaveSettings_Click" HorizontalAlignment="Left" Margin="0,16,0,0"/>
+     </StackPanel>
+    </Grid>
+   </Grid>
+  </Grid>
+ </Grid>
+</Window>
